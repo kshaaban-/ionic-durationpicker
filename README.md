@@ -8,14 +8,17 @@
 ----------------------------------
 
 ## Description:
-This ionic component provides you with a customizable `$ionicPopup` to show your users whenever you need them to input a duration. The component will convert the duration into seconds, and then store it in a variable of your choosing.
+This ionic plugin provides you with a customizable `$ionicPopup` to show to your users whenever you need them to input a duration. The plugin will convert the duration into seconds, and then store it in a variable of your choosing.
 
-I couldn't find an existing component to handle duration inputs, but this was largely inspired by **[rajeshwarpatlolla](https://github.com/rajeshwarpatlolla)**'s **/ [ionic-timepicker](https://github.com/rajeshwarpatlolla/ionic-timepicker)**
+I couldn't find an existing plugin to handle duration inputs, but this was largely inspired by **[rajeshwarpatlolla](https://github.com/rajeshwarpatlolla)**'s **/ [ionic-timepicker](https://github.com/rajeshwarpatlolla/ionic-timepicker)** (GitHub) | [Ionic.io Market](https://market.ionic.io/plugins/ionictimepicker)
 
-**[CodePen Demo](http://codepen.io/kshaaban/full/LNZzoY/)**
+##### Links
+[CodePen Demo](http://codepen.io/kshaaban/full/LNZzoY/)
+
+[Ionic.io Market](https://market.ionic.io/plugins/ionic-durationpicker)
 
 ## Usage:
-1. Install the component into your ionic project using bower:
+1. Install the plugin into your ionic project using bower:
 
     ```
     bower install ionic-durationpicker --save
@@ -39,7 +42,7 @@ I couldn't find an existing component to handle duration inputs, but this was la
     <ionic-durationpicker idp-label="Mile Run Duration" idp-output="mileRunDuration">
     </ionic-durationpicker>
     ```
-    `idp-label` is the string that labels the `ion-item`. And the variable you pass into `idp-output` will be used to store the duration in seconds format. You may also use it to initialize a duration from an integer representing a number seconds. Be wary though, currently there are no checks against what's already in that variable.
+    `idp-label` is the string that labels the generated `ion-item`. And the variable you pass into `idp-output` will be used to store the duration input in seconds format. You may also use it to initialize a duration from an integer representing a number of seconds. Be wary though, currently there are no checks against what's already in that variable.
 
     For example, if your `$scope.mileRunDuration` had a value of `527`, then the above snippet will result with:
 
@@ -73,7 +76,7 @@ I couldn't find an existing component to handle duration inputs, but this was la
       });
     ```
 
-    Then pass it into the component's directive:
+    Then pass it into the plugin's directive:
 
     ```html
     <ionic-durationpicker idp-label="Mile Run Duration" idp-config="mileRunConfig"
@@ -90,11 +93,11 @@ I couldn't find an existing component to handle duration inputs, but this was la
     <img src="https://github.com/kshaaban-/ionic-durationpicker/raw/screenshots/usage-step06-02.png" width="250" alt="ionicPopup custom configuration screenshot" title="ionicPopup custom configuration screenshot">
 
 ## Configuration
-You can configure the component by passing an object containing any of the following properties to the `idp-config` attribute of the `<ionic-durationpicker>` directive (_properties not modified will take their default values_):
+You can configure the plugin by passing an object containing any of the following properties to the `idp-config` attribute of the `<ionic-durationpicker>` directive (_**Note:** properties not modified will take their default values_):
 
 Property        | Type (_Default Value_)                      | Description
 :--------------:|:-------------------------------------------:|-------------------------------------------
-rtl             | Boolean (_false_)                           | For Right-to-left languages, flips the button to the left and pulls the label to the right in the `ion-item`.
+rtl             | Boolean (_false_)                           | For Right-to-left languages, flips the button to the left and pulls the label to the right in the generated `ion-item`.
 inputButtonType | String (_'button-outline button-positive'_) | CSS class(es) for the button that shows the popup.
 format          | String (_'MM:SS'_)                          | Duration Format. **Default value is currently the _only_ supported format.**
 secondsStep     | Number (_1_)                                | Amount to increment/decrement seconds by on popup control arrow clicks.
@@ -111,7 +114,7 @@ popupCancelButtonType | String (_'button-stable'_)             | CSS class(es) f
 - The component currently uses a `Date()` object to initialize the duration. Perhaps refactor that part... eventually!
 
 ## Contact
-For issues with this component, feel free to create an issue here. You could also reach out to me directly on [Twitter](https://twitter.com/KhalShaa)!
+For issues with this plugin, feel free to open an issue on GitHub. You could also reach out to me directly on [Twitter](https://twitter.com/KhalShaa)!
 
 ## License
 Code released under [the MIT license](LICENSE.md).
