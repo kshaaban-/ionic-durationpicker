@@ -7,7 +7,7 @@
 		cacheTemplates.$inject = ["$templateCache"];
 
 		function cacheTemplates($templateCache) {
-				$templateCache.put("idp-item.html","<ion-item ng-class=getItemDirectionClasses()>{{idpLabel}} <button class=button ng-class=getInputButtonType() ng-click=showPopup()>{{prettyFormatDuration()}}</button></ion-item>");
+				$templateCache.put("idp-item.html","<ion-item ng-class=getItemClasses()><i ng-if=idpLabelIcon class=\"icon {{idpLabelIcon}}\"></i> {{idpLabel}} <button class=button ng-class=getInputButtonType() ng-click=showPopup()>{{prettyFormatDuration()}}</button></ion-item>");
 
 				$templateCache.put("popup-minutes-seconds.html","<div class=row><span class=\"idp-control col col-offset-20 col-25\"><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"increment(\'minutes\')\" on-hold=\"updateOnHold(\'minutes\', \'increment\')\" on-release=releaseHold()><i class=\"icon ion-chevron-up\"></i></button><div ng-bind=popupDuration.minutes class=idp-unit-box></div><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"decrement(\'minutes\')\" on-hold=\"updateOnHold(\'minutes\', \'decrement\')\" on-release=releaseHold()><i class=\"icon ion-chevron-down\"></i></button></span> <label class=\"col col-10 idp-unit-separator\">:</label> <span class=\"idp-control col col-25\"><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"increment(\'seconds\')\" on-hold=\"updateOnHold(\'seconds\', \'increment\')\" on-release=releaseHold()><i class=\"icon ion-chevron-up\"></i></button><div ng-bind=popupDuration.seconds class=idp-unit-box></div><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"decrement(\'seconds\')\" on-hold=\"updateOnHold(\'seconds\', \'decrement\')\" on-release=releaseHold()><i class=\"icon ion-chevron-down\"></i></button></span></div>");
 		}
@@ -38,6 +38,7 @@
             scope: {
                 idpConfig: '=',
                 idpLabel: '@',
+                idpLabelIcon: '@',
                 idpOutput: '='
             },
             link: linkFunc
@@ -54,6 +55,9 @@
             }
             if (typeof scope.idpLabel === 'undefined' || scope.idpLabel === null) {
                 scope.idpLabel = 'Duration';
+            }
+            if (typeof scope.idpLabelIcon === 'undefined' || scope.idpLabel === null) {
+                scope.idpLabelIcon = false;
             }
             if (typeof scope.idpOutput === 'undefined' || scope.idpOutput === null) {
                 scope.idpOutput = 0;
@@ -77,7 +81,7 @@
             };
 
             scope.showPopup = _showPopup;
-            scope.getItemDirectionClasses = _getItemDirectionClasses;
+            scope.getItemClasses = _getItemClasses;
             scope.getInputButtonType = _getInputButtonType;
             scope.increment = _increment;
             scope.decrement = _decrement;
@@ -159,12 +163,23 @@
                 });
             }
 
-            function _getItemDirectionClasses() {
+            function _getItemClasses() {
+                var itemClasses = '';
+
+                // Don't forget a white-space after each appended class
                 if (config.rtl) {
-                    return 'idp-dir-rtl item-button-left';
+                    itemClasses += 'idp-dir-rtl item-button-left ';
                 } else {
-                    return 'item-button-right';
+                    itemClasses += 'item-button-right ';
                 }
+
+                if (scope.idpLabelIcon && config.rtl) {
+                    itemClasses += 'item-icon-right ';
+                } else if (scope.idpLabelIcon) {
+                    itemClasses += 'item-icon-left ';
+                }
+
+                return itemClasses;
             }
 
             function _getInputButtonType() {

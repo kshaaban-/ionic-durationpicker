@@ -1,4 +1,5 @@
-<ion-item ng-class="getItemDirectionClasses()">
+<ion-item ng-class="getItemClasses()">
+  <i ng-if="idpLabelIcon" class="icon {{idpLabelIcon}}"></i>
   {{idpLabel}}
   <button class="button" ng-class="getInputButtonType()" ng-click="showPopup()">{{prettyFormatDuration()}}</button>
 </ion-item>
