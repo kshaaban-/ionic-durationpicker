@@ -14,6 +14,7 @@
             scope: {
                 idpConfig: '=',
                 idpLabel: '@',
+                idpLabelIcon: '@',
                 idpOutput: '='
             },
             link: linkFunc
@@ -30,6 +31,9 @@
             }
             if (typeof scope.idpLabel === 'undefined' || scope.idpLabel === null) {
                 scope.idpLabel = 'Duration';
+            }
+            if (typeof scope.idpLabelIcon === 'undefined' || scope.idpLabel === null) {
+                scope.idpLabelIcon = false;
             }
             if (typeof scope.idpOutput === 'undefined' || scope.idpOutput === null) {
                 scope.idpOutput = 0;
@@ -53,7 +57,7 @@
             };
 
             scope.showPopup = _showPopup;
-            scope.getItemDirectionClasses = _getItemDirectionClasses;
+            scope.getItemClasses = _getItemClasses;
             scope.getInputButtonType = _getInputButtonType;
             scope.increment = _increment;
             scope.decrement = _decrement;
@@ -135,12 +139,23 @@
                 });
             }
 
-            function _getItemDirectionClasses() {
+            function _getItemClasses() {
+                var itemClasses = '';
+
+                // Don't forget a white-space after each appended class
                 if (config.rtl) {
-                    return 'idp-dir-rtl item-button-left';
+                    itemClasses += 'idp-dir-rtl item-button-left ';
                 } else {
-                    return 'item-button-right';
+                    itemClasses += 'item-button-right ';
                 }
+
+                if (scope.idpLabelIcon && config.rtl) {
+                    itemClasses += 'item-icon-right ';
+                } else if (scope.idpLabelIcon) {
+                    itemClasses += 'item-icon-left ';
+                }
+
+                return itemClasses;
             }
 
             function _getInputButtonType() {

@@ -39,10 +39,10 @@ I couldn't find an existing plugin to handle duration inputs, but this was large
 4. You may use it immediately in your templates with the default configuration:
 
     ```html
-    <ionic-durationpicker idp-label="Mile Run Duration" idp-output="mileRunDuration">
+    <ionic-durationpicker idp-label="Mile Run Duration" idp-label-icon="ion-clock" idp-output="mileRunDuration">
     </ionic-durationpicker>
     ```
-    `idp-label` is the string that labels the generated `ion-item`. And the variable you pass into `idp-output` will be used to store the duration input in seconds format. You may also use it to initialize a duration from an integer representing a number of seconds. Be wary though, currently there are no checks against what's already in that variable.
+    `idp-label` is the string that labels the generated `ion-item`. If you would like to include an ionicon in your ion-item, then you can pass the icon name into `idp-label-icon`. And the variable you pass into `idp-output` will be used to store the duration input in seconds format. You may also use it to initialize a duration from an integer representing a number of seconds. Be wary though, currently there are no checks against what's already in that variable.
 
     For example, if your `$scope.mileRunDuration` had a value of `527`, then the above snippet will result with:
 
@@ -79,8 +79,8 @@ I couldn't find an existing plugin to handle duration inputs, but this was large
     Then pass it into the plugin's directive:
 
     ```html
-    <ionic-durationpicker idp-label="Mile Run Duration" idp-config="mileRunConfig"
-      idp-output="mileRunDuration">
+    <ionic-durationpicker idp-label="Mile Run Duration" idp-label-icon="ion-clock"
+      idp-config="mileRunConfig" idp-output="mileRunDuration">
     </ionic-durationpicker>
     ```
 
@@ -97,7 +97,7 @@ You can configure the plugin by passing an object containing any of the followin
 
 Property        | Type (_Default Value_)                      | Description
 :--------------:|:-------------------------------------------:|-------------------------------------------
-rtl             | Boolean (_false_)                           | For Right-to-left languages, flips the button to the left and pulls the label to the right in the generated `ion-item`.
+rtl             | Boolean (_false_)                           | For Right-to-left languages, flips the button to the left and pulls the label to the right along with the icon in the generated `ion-item`.
 inputButtonType | String (_'button-outline button-positive'_) | CSS class(es) for the button that shows the popup.
 format          | String (_'MM:SS'_)                          | Duration Format. **Default value is currently the _only_ supported format.**
 secondsStep     | Number (_1_)                                | Amount to increment/decrement seconds by on popup control arrow clicks.
