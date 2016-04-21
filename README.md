@@ -39,16 +39,18 @@ I couldn't find an existing plugin to handle duration inputs, but this was large
 4. You may use it immediately in your templates with the default configuration:
 
     ```html
-    <ionic-durationpicker idp-label="Mile Run Duration" idp-label-icon="ion-clock" idp-output="mileRunDuration">
+    <ionic-durationpicker idp-label="Mile Run Duration" idp-label-icon="ion-clock" idp-output="durations.mileRun">
     </ionic-durationpicker>
     ```
     `idp-label` is the string that labels the generated `ion-item`. If you would like to include an ionicon in your ion-item, then you can pass the icon name into `idp-label-icon`. And the variable you pass into `idp-output` will be used to store the duration input in seconds format. You may also use it to initialize a duration from an integer representing a number of seconds. Be wary though, currently there are no checks against what's already in that variable.
 
-    For example, if your `$scope.mileRunDuration` had a value of `527`, then the above snippet will result with:
+    For example, if your `$scope.durations.mileRun` had a value of `527`, then the above snippet will result with:
 
     <img src="https://github.com/kshaaban-/ionic-durationpicker/raw/screenshots/usage-step04-01.png" width="300" alt="ion-item default configuration screenshot" title="ion-item default configuration screenshot">
 
-    _**Note:** See [Configuration](#configuration) section below to configure this `ion-item`._
+    **Note 1:** Make sure you pass an object property into `idp-output` , otherwise the duration will not persist because of the way two-way data binding works with primitive datatypes (integers representing the duration in this case).
+    
+    **Note 2:** See [Configuration](#configuration) section below to configure this `ion-item`.
 
 5. If a user taps on the duration button, they get the following popup:
 
@@ -62,7 +64,9 @@ I couldn't find an existing plugin to handle duration inputs, but this was large
     angular
       .module('myApp')
       .controller('myController', ['$scope', function($scope) {
-        $scope.mileRunDuration = 527;
+        $scope.durations = {
+            mileRun: 527
+        };
 
         $scope.mileRunConfig = {
           inputButtonType: 'button-assertive',
@@ -80,7 +84,7 @@ I couldn't find an existing plugin to handle duration inputs, but this was large
 
     ```html
     <ionic-durationpicker idp-label="Mile Run Duration" idp-label-icon="ion-clock"
-      idp-config="mileRunConfig" idp-output="mileRunDuration">
+      idp-config="mileRunConfig" idp-output="durations.mileRun">
     </ionic-durationpicker>
     ```
 
