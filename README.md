@@ -103,7 +103,7 @@ Property        | Type (_Default Value_)                      | Description
 :--------------:|:-------------------------------------------:|-------------------------------------------
 rtl             | Boolean (_false_)                           | For Right-to-left languages, flips the button to the left and pulls the label to the right along with the icon in the generated `ion-item`.
 inputButtonType | String (_'button-outline button-positive'_) | CSS class(es) for the button that shows the popup.
-format          | String (_'MM:SS'_)                          | Duration Format. **Default value is currently the _only_ supported format.**
+format          | String (_'MM:SS'_, _'HH:MM:SS'_ or _'DD:HH:MM:SS'_)                          | Duration Format.
 secondsStep     | Number (_1_)                                | Amount to increment/decrement seconds by on popup control arrow clicks.
 minutesStep     | Number (_1_)                                | Amount to increment/decrement minutes by on popup control arrow clicks.
 popupTitle      | String (_'Duration Picker'_)                 | Title for the `$ionicPopup`.
@@ -114,8 +114,7 @@ popupCancelLabel | String (_'Cancel'_)                         | Label for the c
 popupCancelButtonType | String (_'button-stable'_)             | CSS class(es) for the cancel button.
 
 ## Improvements
-- Include more formats (Hours, Days, etc...).
-- The component currently uses a `Date()` object to initialize the duration. Perhaps refactor that part... eventually!
+- Add a configurable max limit and force the full duration value to be under that limit.
 
 ## Contact
 For issues with this plugin, feel free to open an issue on GitHub. You could also reach out to me directly on [Twitter](https://twitter.com/KhalShaa)!
