@@ -39,7 +39,7 @@
                 scope.idpOutput = 0;
             }
 
-            var dateObject, popupButton, onHoldPromise;
+            var onHoldPromise;
 
             // Default configuration:
             var config = {
@@ -48,6 +48,8 @@
                 format: scope.idpConfig.format ? scope.idpConfig.format : 'MM:SS',
                 secondsStep: scope.idpConfig.secondsStep ? scope.idpConfig.secondsStep : 1,
                 minutesStep: scope.idpConfig.minutesStep ? scope.idpConfig.minutesStep : 1,
+                hoursStep: scope.idpConfig.hoursStep ? scope.idpConfig.hoursStep : 1,
+                daysStep: scope.idpConfig.daysStep ? scope.idpConfig.daysStep : 1,
                 popupTitle: scope.idpConfig.popupTitle ? scope.idpConfig.popupTitle : 'Duration Picker',
                 popupSubTitle: scope.idpConfig.popupSubTitle ? scope.idpConfig.popupSubTitle : 'Enter duration',
                 popupSaveLabel: scope.idpConfig.popupSaveLabel ? scope.idpConfig.popupSaveLabel : 'Save',
@@ -70,11 +72,11 @@
             //////////////////////////////////////////////////
 
             function _initialize() {
-                dateObject = new Date(scope.idpOutput * 1000);
-
                 scope.duration = {
-                    minutes: __prettyFormatUnit(dateObject.getUTCMinutes()),
-                    seconds: __prettyFormatUnit(dateObject.getUTCSeconds())
+                    days: __prettyFormatUnit(parseInt(scope.idpOutput / 86400)),
+                    hours: __prettyFormatUnit(parseInt(scope.idpOutput / 3600) % 24),
+                    minutes: __prettyFormatUnit(parseInt(scope.idpOutput / 60) % 60),
+                    seconds: __prettyFormatUnit(scope.idpOutput % 60)
                 };
 
                 scope.popupDuration = angular.copy(scope.duration);
@@ -82,16 +84,41 @@
 
             function _increment(unit) {
                 var step = config[(unit + 'Step')];
-                scope.popupDuration[unit] = parseInt(scope.popupDuration[unit]);
-                scope.popupDuration[unit] = (scope.popupDuration[unit] + step) % 60;
-                scope.popupDuration[unit] = __prettyFormatUnit(scope.popupDuration[unit]);
+                if (unit === 'days') {
+                    scope.popupDuration[unit] = parseInt(scope.popupDuration[unit]);
+                    scope.popupDuration[unit] = scope.popupDuration[unit] + step;
+                    scope.popupDuration[unit] = __prettyFormatUnit(scope.popupDuration[unit]);
+                } else {
+                    var max = 60;
+                    if (unit === 'hours') {
+                        max = 24;
+                    }
+
+                    scope.popupDuration[unit] = parseInt(scope.popupDuration[unit]);
+                    scope.popupDuration[unit] = (scope.popupDuration[unit] + step) % max;
+                    scope.popupDuration[unit] = __prettyFormatUnit(scope.popupDuration[unit]);
+                }
             }
 
             function _decrement(unit) {
                 var step = config[(unit + 'Step')];
-                scope.popupDuration[unit] = parseInt(scope.popupDuration[unit]);
-                scope.popupDuration[unit] = (scope.popupDuration[unit] + (60 - step)) % 60;
-                scope.popupDuration[unit] = __prettyFormatUnit(scope.popupDuration[unit]);
+                if (unit === 'days') {
+                    scope.popupDuration[unit] = parseInt(scope.popupDuration[unit]);
+                    scope.popupDuration[unit] = scope.popupDuration[unit] - step;
+                    if (scope.popupDuration[unit] < 0) {
+                        scope.popupDuration[unit] = 0;
+                    }
+                    scope.popupDuration[unit] = __prettyFormatUnit(scope.popupDuration[unit]);
+                } else {
+                    var max = 60;
+                    if (unit === 'hours') {
+                        max = 24;
+                    }
+
+                    scope.popupDuration[unit] = parseInt(scope.popupDuration[unit]);
+                    scope.popupDuration[unit] = (scope.popupDuration[unit] + (max - step)) % max;
+                    scope.popupDuration[unit] = __prettyFormatUnit(scope.popupDuration[unit]);
+                }
             }
 
             function _updateOnHold(unit, action) {
@@ -109,10 +136,19 @@
             }
 
             function _showPopup() {
-                var templateFileName;
+                var templateFileName, cssClass;
                 switch (config.format) {
                     case 'MM:SS':
                         templateFileName = 'popup-minutes-seconds.html';
+                        cssClass = 'idp-popup-container';
+                        break;
+                    case 'HH:MM:SS':
+                        templateFileName = 'popup-hours-minutes-seconds.html';
+                        cssClass = 'idp-popup-container idp-medium';
+                        break;
+                    case 'DD:HH:MM:SS':
+                        templateFileName = 'popup-days-hours-minutes-seconds.html';
+                        cssClass = 'idp-popup-container idp-large';
                         break;
                     default:
                         templateFileName = 'popup-minutes-seconds.html';
@@ -124,6 +160,7 @@
                     title: config.popupTitle,
                     subTitle: config.popupSubTitle,
                     scope: scope,
+                    cssClass: cssClass,
                     buttons: [
                         {
                             text: config.popupCancelLabel,
@@ -163,14 +200,24 @@
             }
 
             function _prettyFormatDuration() {
+                var formattedDays = __prettyFormatUnit(scope.duration.days);
+                var formattedHours = __prettyFormatUnit(scope.duration.hours);
                 var formattedMinutes = __prettyFormatUnit(scope.duration.minutes);
                 var formattedSeconds = __prettyFormatUnit(scope.duration.seconds);
-                return  formattedMinutes + ':' + formattedSeconds;
+
+                switch (config.format) {
+                    case 'HH:MM:SS':
+                        return formattedHours + ':' + formattedMinutes + ':' + formattedSeconds;
+                    case 'DD:HH:MM:SS':
+                        return formattedDays + ':' + formattedHours + ':' + formattedMinutes + ':' + formattedSeconds;
+                    default:
+                        return formattedMinutes + ':' + formattedSeconds;
+                }
             }
 
             function __getDurationInSeconds() {
                 scope.duration = angular.copy(scope.popupDuration);
-                scope.idpOutput = parseInt(scope.duration.minutes * 60) + parseInt(scope.duration.seconds);
+                scope.idpOutput = parseInt(scope.duration.days * 86400) + parseInt(scope.duration.hours * 3600) + parseInt(scope.duration.minutes * 60) + parseInt(scope.duration.seconds);
             }
 
             function __prettyFormatUnit(value) {

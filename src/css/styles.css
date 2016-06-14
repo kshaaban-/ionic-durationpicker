@@ -28,3 +28,13 @@
 .idp-dir-rtl {
   direction: rtl !important;
 }
+
+.idp-popup-container.idp-medium .popup {
+  width: auto;
+  min-width: 280px;
+}
+
+.idp-popup-container.idp-large .popup {
+  width: auto;
+  min-width: 300px;
+}

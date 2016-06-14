@@ -9,6 +9,10 @@
 		function cacheTemplates($templateCache) {
 				$templateCache.put("idp-item.html","<ion-item ng-class=getItemClasses()><i ng-if=idpLabelIcon class=\"icon {{idpLabelIcon}}\"></i><div ng-bind-html=idpLabel></div><button class=button type=button ng-class=getInputButtonType() ng-click=showPopup()>{{prettyFormatDuration()}}</button></ion-item>");
 
+				$templateCache.put("popup-days-hours-minutes-seconds.html","<div class=row><span class=\"idp-control col col-offset-5 col-20\"><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"increment(\'days\')\" on-hold=\"updateOnHold(\'days\', \'increment\')\" on-release=releaseHold()><i class=\"icon ion-chevron-up\"></i></button><div ng-bind=popupDuration.days class=idp-unit-box></div><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"decrement(\'days\')\" on-hold=\"updateOnHold(\'days\', \'decrement\')\" on-release=releaseHold()><i class=\"icon ion-chevron-down\"></i></button></span> <label class=\"col col-5 idp-unit-separator\">:</label> <span class=\"idp-control col col-20\"><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"increment(\'hours\')\" on-hold=\"updateOnHold(\'hours\', \'increment\')\" on-release=releaseHold()><i class=\"icon ion-chevron-up\"></i></button><div ng-bind=popupDuration.hours class=idp-unit-box></div><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"decrement(\'hours\')\" on-hold=\"updateOnHold(\'hours\', \'decrement\')\" on-release=releaseHold()><i class=\"icon ion-chevron-down\"></i></button></span> <label class=\"col col-5 idp-unit-separator\">:</label> <span class=\"idp-control col col-20\"><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"increment(\'minutes\')\" on-hold=\"updateOnHold(\'minutes\', \'increment\')\" on-release=releaseHold()><i class=\"icon ion-chevron-up\"></i></button><div ng-bind=popupDuration.minutes class=idp-unit-box></div><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"decrement(\'minutes\')\" on-hold=\"updateOnHold(\'minutes\', \'decrement\')\" on-release=releaseHold()><i class=\"icon ion-chevron-down\"></i></button></span> <label class=\"col col-5 idp-unit-separator\">:</label> <span class=\"idp-control col col-20\"><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"increment(\'seconds\')\" on-hold=\"updateOnHold(\'seconds\', \'increment\')\" on-release=releaseHold()><i class=\"icon ion-chevron-up\"></i></button><div ng-bind=popupDuration.seconds class=idp-unit-box></div><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"decrement(\'seconds\')\" on-hold=\"updateOnHold(\'seconds\', \'decrement\')\" on-release=releaseHold()><i class=\"icon ion-chevron-down\"></i></button></span></div>");
+
+				$templateCache.put("popup-hours-minutes-seconds.html","<div class=row><span class=\"idp-control col col-offset-10 col-20\"><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"increment(\'hours\')\" on-hold=\"updateOnHold(\'hours\', \'increment\')\" on-release=releaseHold()><i class=\"icon ion-chevron-up\"></i></button><div ng-bind=popupDuration.hours class=idp-unit-box></div><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"decrement(\'hours\')\" on-hold=\"updateOnHold(\'hours\', \'decrement\')\" on-release=releaseHold()><i class=\"icon ion-chevron-down\"></i></button></span> <label class=\"col col-10 idp-unit-separator\">:</label> <span class=\"idp-control col col-20\"><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"increment(\'minutes\')\" on-hold=\"updateOnHold(\'minutes\', \'increment\')\" on-release=releaseHold()><i class=\"icon ion-chevron-up\"></i></button><div ng-bind=popupDuration.minutes class=idp-unit-box></div><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"decrement(\'minutes\')\" on-hold=\"updateOnHold(\'minutes\', \'decrement\')\" on-release=releaseHold()><i class=\"icon ion-chevron-down\"></i></button></span> <label class=\"col col-10 idp-unit-separator\">:</label> <span class=\"idp-control col col-20\"><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"increment(\'seconds\')\" on-hold=\"updateOnHold(\'seconds\', \'increment\')\" on-release=releaseHold()><i class=\"icon ion-chevron-up\"></i></button><div ng-bind=popupDuration.seconds class=idp-unit-box></div><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"decrement(\'seconds\')\" on-hold=\"updateOnHold(\'seconds\', \'decrement\')\" on-release=releaseHold()><i class=\"icon ion-chevron-down\"></i></button></span></div>");
+
 				$templateCache.put("popup-minutes-seconds.html","<div class=row><span class=\"idp-control col col-offset-20 col-25\"><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"increment(\'minutes\')\" on-hold=\"updateOnHold(\'minutes\', \'increment\')\" on-release=releaseHold()><i class=\"icon ion-chevron-up\"></i></button><div ng-bind=popupDuration.minutes class=idp-unit-box></div><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"decrement(\'minutes\')\" on-hold=\"updateOnHold(\'minutes\', \'decrement\')\" on-release=releaseHold()><i class=\"icon ion-chevron-down\"></i></button></span> <label class=\"col col-10 idp-unit-separator\">:</label> <span class=\"idp-control col col-25\"><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"increment(\'seconds\')\" on-hold=\"updateOnHold(\'seconds\', \'increment\')\" on-release=releaseHold()><i class=\"icon ion-chevron-up\"></i></button><div ng-bind=popupDuration.seconds class=idp-unit-box></div><button type=button class=\"button button-clear button-small idp-control-arrow\" ng-click=\"decrement(\'seconds\')\" on-hold=\"updateOnHold(\'seconds\', \'decrement\')\" on-release=releaseHold()><i class=\"icon ion-chevron-down\"></i></button></span></div>");
 		}
 })();
@@ -63,7 +67,7 @@
                 scope.idpOutput = 0;
             }
 
-            var dateObject, popupButton, onHoldPromise;
+            var onHoldPromise;
 
             // Default configuration:
             var config = {
@@ -72,6 +76,8 @@
                 format: scope.idpConfig.format ? scope.idpConfig.format : 'MM:SS',
                 secondsStep: scope.idpConfig.secondsStep ? scope.idpConfig.secondsStep : 1,
                 minutesStep: scope.idpConfig.minutesStep ? scope.idpConfig.minutesStep : 1,
+                hoursStep: scope.idpConfig.hoursStep ? scope.idpConfig.hoursStep : 1,
+                daysStep: scope.idpConfig.daysStep ? scope.idpConfig.daysStep : 1,
                 popupTitle: scope.idpConfig.popupTitle ? scope.idpConfig.popupTitle : 'Duration Picker',
                 popupSubTitle: scope.idpConfig.popupSubTitle ? scope.idpConfig.popupSubTitle : 'Enter duration',
                 popupSaveLabel: scope.idpConfig.popupSaveLabel ? scope.idpConfig.popupSaveLabel : 'Save',
@@ -94,11 +100,11 @@
             //////////////////////////////////////////////////
 
             function _initialize() {
-                dateObject = new Date(scope.idpOutput * 1000);
-
                 scope.duration = {
-                    minutes: __prettyFormatUnit(dateObject.getUTCMinutes()),
-                    seconds: __prettyFormatUnit(dateObject.getUTCSeconds())
+                    days: __prettyFormatUnit(parseInt(scope.idpOutput / 86400)),
+                    hours: __prettyFormatUnit(parseInt(scope.idpOutput / 3600) % 24),
+                    minutes: __prettyFormatUnit(parseInt(scope.idpOutput / 60) % 60),
+                    seconds: __prettyFormatUnit(scope.idpOutput % 60)
                 };
 
                 scope.popupDuration = angular.copy(scope.duration);
@@ -106,16 +112,41 @@
 
             function _increment(unit) {
                 var step = config[(unit + 'Step')];
-                scope.popupDuration[unit] = parseInt(scope.popupDuration[unit]);
-                scope.popupDuration[unit] = (scope.popupDuration[unit] + step) % 60;
-                scope.popupDuration[unit] = __prettyFormatUnit(scope.popupDuration[unit]);
+                if (unit === 'days') {
+                    scope.popupDuration[unit] = parseInt(scope.popupDuration[unit]);
+                    scope.popupDuration[unit] = scope.popupDuration[unit] + step;
+                    scope.popupDuration[unit] = __prettyFormatUnit(scope.popupDuration[unit]);
+                } else {
+                    var max = 60;
+                    if (unit === 'hours') {
+                        max = 24;
+                    }
+
+                    scope.popupDuration[unit] = parseInt(scope.popupDuration[unit]);
+                    scope.popupDuration[unit] = (scope.popupDuration[unit] + step) % max;
+                    scope.popupDuration[unit] = __prettyFormatUnit(scope.popupDuration[unit]);
+                }
             }
 
             function _decrement(unit) {
                 var step = config[(unit + 'Step')];
-                scope.popupDuration[unit] = parseInt(scope.popupDuration[unit]);
-                scope.popupDuration[unit] = (scope.popupDuration[unit] + (60 - step)) % 60;
-                scope.popupDuration[unit] = __prettyFormatUnit(scope.popupDuration[unit]);
+                if (unit === 'days') {
+                    scope.popupDuration[unit] = parseInt(scope.popupDuration[unit]);
+                    scope.popupDuration[unit] = scope.popupDuration[unit] - step;
+                    if (scope.popupDuration[unit] < 0) {
+                        scope.popupDuration[unit] = 0;
+                    }
+                    scope.popupDuration[unit] = __prettyFormatUnit(scope.popupDuration[unit]);
+                } else {
+                    var max = 60;
+                    if (unit === 'hours') {
+                        max = 24;
+                    }
+
+                    scope.popupDuration[unit] = parseInt(scope.popupDuration[unit]);
+                    scope.popupDuration[unit] = (scope.popupDuration[unit] + (max - step)) % max;
+                    scope.popupDuration[unit] = __prettyFormatUnit(scope.popupDuration[unit]);
+                }
             }
 
             function _updateOnHold(unit, action) {
@@ -133,10 +164,19 @@
             }
 
             function _showPopup() {
-                var templateFileName;
+                var templateFileName, cssClass;
                 switch (config.format) {
                     case 'MM:SS':
                         templateFileName = 'popup-minutes-seconds.html';
+                        cssClass = 'idp-popup-container';
+                        break;
+                    case 'HH:MM:SS':
+                        templateFileName = 'popup-hours-minutes-seconds.html';
+                        cssClass = 'idp-popup-container idp-medium';
+                        break;
+                    case 'DD:HH:MM:SS':
+                        templateFileName = 'popup-days-hours-minutes-seconds.html';
+                        cssClass = 'idp-popup-container idp-large';
                         break;
                     default:
                         templateFileName = 'popup-minutes-seconds.html';
@@ -148,6 +188,7 @@
                     title: config.popupTitle,
                     subTitle: config.popupSubTitle,
                     scope: scope,
+                    cssClass: cssClass,
                     buttons: [
                         {
                             text: config.popupCancelLabel,
@@ -187,14 +228,24 @@
             }
 
             function _prettyFormatDuration() {
+                var formattedDays = __prettyFormatUnit(scope.duration.days);
+                var formattedHours = __prettyFormatUnit(scope.duration.hours);
                 var formattedMinutes = __prettyFormatUnit(scope.duration.minutes);
                 var formattedSeconds = __prettyFormatUnit(scope.duration.seconds);
-                return  formattedMinutes + ':' + formattedSeconds;
+
+                switch (config.format) {
+                    case 'HH:MM:SS':
+                        return formattedHours + ':' + formattedMinutes + ':' + formattedSeconds;
+                    case 'DD:HH:MM:SS':
+                        return formattedDays + ':' + formattedHours + ':' + formattedMinutes + ':' + formattedSeconds;
+                    default:
+                        return formattedMinutes + ':' + formattedSeconds;
+                }
             }
 
             function __getDurationInSeconds() {
                 scope.duration = angular.copy(scope.popupDuration);
-                scope.idpOutput = parseInt(scope.duration.minutes * 60) + parseInt(scope.duration.seconds);
+                scope.idpOutput = parseInt(scope.duration.days * 86400) + parseInt(scope.duration.hours * 3600) + parseInt(scope.duration.minutes * 60) + parseInt(scope.duration.seconds);
             }
 
             function __prettyFormatUnit(value) {
@@ -248,4 +299,14 @@
 "\n" +
 ".idp-dir-rtl {\n" +
 "  direction: rtl !important;\n" +
+"}\n" +
+"\n" +
+".idp-popup-container.idp-medium .popup {\n" +
+"  width: auto;\n" +
+"  min-width: 280px;\n" +
+"}\n" +
+"\n" +
+".idp-popup-container.idp-large .popup {\n" +
+"  width: auto;\n" +
+"  min-width: 300px;\n" +
 "}"));
