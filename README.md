@@ -49,7 +49,7 @@ I couldn't find an existing plugin to handle duration inputs, but this was large
     <img src="https://github.com/kshaaban-/ionic-durationpicker/raw/screenshots/usage-step04-01.png" width="300" alt="ion-item default configuration screenshot" title="ion-item default configuration screenshot">
 
     **Note 1:** Make sure you pass an object property into `idp-output` , otherwise the duration will not persist because of the way two-way data binding works with primitive datatypes (integers representing the duration in this case).
-    
+
     **Note 2:** See [Configuration](#configuration) section below to configure this `ion-item`.
 
 5. If a user taps on the duration button, they get the following popup:
@@ -103,9 +103,11 @@ Property        | Type (_Default Value_)                      | Description
 :--------------:|:-------------------------------------------:|-------------------------------------------
 rtl             | Boolean (_false_)                           | For Right-to-left languages, flips the button to the left and pulls the label to the right along with the icon in the generated `ion-item`.
 inputButtonType | String (_'button-outline button-positive'_) | CSS class(es) for the button that shows the popup.
-format          | String (_'MM:SS'_, _'HH:MM:SS'_ or _'DD:HH:MM:SS'_)                          | Duration Format.
+format          | String (_'MM:SS'_)                          | Duration Format. Supports `'MM:SS'` , `'HH:MM:SS'`, or `'DD:HH:MM:SS'`. If anything else is passed here it reverts back to the default.
 secondsStep     | Number (_1_)                                | Amount to increment/decrement seconds by on popup control arrow clicks.
 minutesStep     | Number (_1_)                                | Amount to increment/decrement minutes by on popup control arrow clicks.
+hoursStep       | Number (_1_)                                | Amount to increment/decrement hours by on popup control arrow clicks.
+daysStep        | Number (_1_)                                | Amount to increment/decrement days by on popup control arrow clicks.
 popupTitle      | String (_'Duration Picker'_)                 | Title for the `$ionicPopup`.
 popupSubTitle   | String (_'Enter duration'_)                  | Sub Title.
 popupSaveLabel  | String (_'Save'_)                            | Label for the save button.

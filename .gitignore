@@ -1,3 +1,11 @@
+### Build files ###
+src/styles.js
+src/templates.js
+
+
+### IDEA PHPStorm ###
+.idea
+
 
 # Created by https://www.gitignore.io/api/node,bower
 
@@ -43,7 +51,3 @@ bower_components
 .bower-cache
 .bower-registry
 .bower-tmp
-
-
-### IDEA PHPStorm ###
-.idea
