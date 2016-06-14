@@ -8,6 +8,7 @@
 
 .idp-control-arrow {
   width: 100%;
+  color: #dddddd;
 }
 
 .idp-control-arrow > .icon::before {

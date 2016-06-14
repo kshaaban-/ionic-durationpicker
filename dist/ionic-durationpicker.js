@@ -280,6 +280,7 @@
 "\n" +
 ".idp-control-arrow {\n" +
 "  width: 100%;\n" +
+"  color: #dddddd;\n" +
 "}\n" +
 "\n" +
 ".idp-control-arrow > .icon::before {\n" +
