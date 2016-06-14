@@ -41,4 +41,14 @@
 "\n" +
 ".idp-dir-rtl {\n" +
 "  direction: rtl !important;\n" +
+"}\n" +
+"\n" +
+".idp-popup-container.idp-medium .popup {\n" +
+"  width: auto;\n" +
+"  min-width: 280px;\n" +
+"}\n" +
+"\n" +
+".idp-popup-container.idp-large .popup {\n" +
+"  width: auto;\n" +
+"  min-width: 300px;\n" +
 "}"));
