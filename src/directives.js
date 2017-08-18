@@ -58,6 +58,8 @@
                 popupCancelButtonType: scope.idpConfig.popupCancelButtonType ? scope.idpConfig.popupCancelButtonType : 'button-stable'
             };
 
+            var _skipWatch = false;
+
             scope.showPopup = _showPopup;
             scope.getItemClasses = _getItemClasses;
             scope.getInputButtonType = _getInputButtonType;
@@ -67,7 +69,13 @@
             scope.releaseHold = _releaseHold;
             scope.prettyFormatDuration = _prettyFormatDuration;
 
-            _initialize();
+            scope.$watch('idpOutput', function(n, o) {
+                if (!_skipWatch) {
+                    _initialize();
+                }
+
+                _skipWatch = false;
+            });
 
             //////////////////////////////////////////////////
 
@@ -216,6 +224,8 @@
             }
 
             function __getDurationInSeconds() {
+                _skipWatch = true;
+
                 scope.duration = angular.copy(scope.popupDuration);
                 scope.idpOutput = parseInt(scope.duration.days * 86400) + parseInt(scope.duration.hours * 3600) + parseInt(scope.duration.minutes * 60) + parseInt(scope.duration.seconds);
             }
